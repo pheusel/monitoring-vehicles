@@ -173,14 +173,14 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                             })
                     };
 
-                    // TODO: Verbindung herstellen
+                    this.mqttClient.connect(connectOptions);
                 }
 
                 /**
                  * Verbindung trennen.
                  */
                 disconnect() {
-                    // TODO: Verbindung trennen
+                    this.mqttClient.disconnect();
                 }
 
                 /**
@@ -219,7 +219,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                 onMessageArrived(mqttMessage) {
                     let message = JSON.parse(mqttMessage.payloadString);
 
-                    // TODO: Anzeige aktualisieren
+                    // Anzeige aktualisieren
                     //
                     // Hierfür muss der im JSON mitgesendete Nachrichtentyp
                     // ausgewertet werden.
@@ -227,6 +227,18 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     // VEHICLE_READY: this.addVehicle(message) aufrufen
                     // CONNECTION_LIST: this.removeVehicle(message) aufrufen
                     // SENSOR_DATA: this.updateVehicle(message) aufrufen
+
+                    switch (message) {
+                        case VEHICLE_READY:
+                            this.addVehicle(message);
+                            break;
+                        case CONNECTION_LIST:
+                            this.removeVehicle(message);
+                            break;
+                        case SENSOR_DATA:
+                            this.updateVehicle(message);
+                            break;
+                    }
                 }
 
                 /**
