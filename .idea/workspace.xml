@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c594eb4-d368-4447-9b38-2b662a525ae5" name="Default" comment="" />
+    <list default="true" id="5c594eb4-d368-4447-9b38-2b662a525ae5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/vehicles/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/SensorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/SensorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusType.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/WGS84.java" beforeDir="false" afterPath="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/WGS84.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/vehicles/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +31,90 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vehicles/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="225">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vehicles.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/vehicles.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SensorMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/SensorMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vehicle.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Vehicle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WGS84.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/WGS84.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -50,14 +141,35 @@
       </map>
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/WGS84.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Vehicle.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Utils.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusType.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusMessage.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/SensorMessage.java" />
+        <option value="$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Main.java" />
+        <option value="$PROJECT_DIR$/vehicles/pom.xml" />
+      </list>
+    </option>
+  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="993" />
+    <option name="x" value="67" />
     <option name="y" value="27" />
     <option name="width" value="927" />
     <option name="height" value="1053" />
@@ -73,6 +185,15 @@
       <pane id="ProjectPane">
         <subPane>
           <expand>
+            <path>
+              <item name="monitoring-vehicles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="monitoring-vehicles" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="public_html" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="monitoring-vehicles" type="b2602c69:ProjectViewProjectNode" />
               <item name="vehicles" type="462c0819:PsiDirectoryNode" />
@@ -187,12 +308,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522736756087</updated>
-      <workItem from="1522736768838" duration="208000" />
+      <workItem from="1522736768838" duration="1138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208000" />
+    <option name="totallyTimeSpent" value="1138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
@@ -235,10 +356,76 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/StatusType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/Vehicle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/WGS84.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/vehicles.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicles/src/main/java/dhbw/wpvs/vehicle/SensorMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vehicles/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
@@ -259,7 +446,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited />
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
