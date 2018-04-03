@@ -1,21 +1,17 @@
 package dhbw.wpvs.vehicle;
 
-import java.io.File;
-import java.io.IOException;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * Hauptklasse unseres kleinen Progrämmchens.
- *
- * Mit etwas Google-Maps-Erfahrung lassen sich relativ einfach eigene
- * Wegstrecken definieren. Man muss nur Rechtsklick auf einen Punkt machen und
- * "Was ist hier?" anklicken, um die Koordinaten zu sehen. Allerdings speichert
- * Goolge Maps eine Nachkommastelle mehr, als das ITN-Format erlaubt. :-)
- */
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
         // Fahrzeug-ID abfragen
         String vehicleId = Utils.askInput("Beliebige Fahrzeug-ID", "postauto");
 
@@ -38,7 +34,6 @@ public class Main {
         System.out.println();
         int index = Integer.parseInt(Utils.askInput("Zu fahrende Strecke", "0"));
         
-        // TODO: Methode parseItnFile() unten ausprogrammieren
         List<WGS84> waypoints = parseItnFile(new File(workdir, waypointFiles[index]));
 
         // Adresse des MQTT-Brokers abfragen
@@ -54,7 +49,19 @@ public class Main {
         
         // TODO: Verbindung zum MQTT-Broker herstellen.
 
+        MqttClient client = new MqttClient(mqttAddress, MqttClient.generateClientId());
+
+        client.connect();
+
         // TODO: Statusmeldung mit "type" = "StatusType.VEHICLE_READY" senden.
+
+        StatusMessage statusMessage = new StatusMessage();
+        statusMessage.type = StatusType.VEHICLE_READY;
+
+        MqttMessage message = new MqttMessage(statusMessage.toJson());
+        client.publish(Utils.MQTT_TOPIC_NAME, message);
+
+
         // Die Nachricht soll soll an das Topic Utils.MQTT_TOPIC_NAME gesendet
         // werden.
         
@@ -100,9 +107,20 @@ public class Main {
     public static List<WGS84> parseItnFile(File file) throws IOException {
         List<WGS84> waypoints = new ArrayList<>();
 
-        // TODO: Übergebene Datei parsen und Liste "waypoints" damit füllen
+        BufferedReader br  = new BufferedReader(new FileReader(file));
+        String line;
+
+        do{
+            line = br.readLine();
+            if(!line.startsWith("<")){
+                String[] as = line.split("|");
+                WGS84 wgs84 = new WGS84();
+                wgs84.longitude = Double.valueOf(as[0]) / 100000.0;
+                wgs84.latitude = Double.valueOf(as[1]) / 100000.0;
+                waypoints.add(wgs84);
+            }
+        } while (line != null);
 
         return waypoints;
     }
-
 }
