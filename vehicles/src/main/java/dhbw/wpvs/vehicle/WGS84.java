@@ -4,6 +4,7 @@ package dhbw.wpvs.vehicle;
  * Eine Koordinate nach WGS84-Standard. Vgl.
  * https://de.wikipedia.org/wiki/World_Geodetic_System_1984
  */
+
 public class WGS84 {
 
     public double latitude = 0;
