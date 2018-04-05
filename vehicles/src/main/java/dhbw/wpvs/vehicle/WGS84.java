@@ -13,7 +13,7 @@ public class WGS84 {
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public WGS84() {
     }
-    
+
     public WGS84(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -21,19 +21,12 @@ public class WGS84 {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Hilfsmethoden">
-    /**
-     * @return String-Version zum Debuggen
-     */
-    @Override
-    public String toString() {
-        return "" + this.latitude + ", " + this.longitude;
-    }
-    
+
     /**
      * Berechnung der ungefähren Entfernung zwischen zwei Punkten in Kilometern
      * anhand der Haversine-Formel. Die Entfernung entspricht der angenäherten
      * Luftlinie zwischen den beiden Punkten.
-     *
+     * <p>
      * Diese Funktion wurde hier geklaut: https://stackoverflow.com/a/12600225
      * Vgl. https://en.wikipedia.org/wiki/Haversine_formula
      *
@@ -44,26 +37,26 @@ public class WGS84 {
     public static double distanceInKm(WGS84 x1, WGS84 x2) {
         double latDistance = Math.toRadians(x1.latitude - x2.latitude);
         double lngDistance = Math.toRadians(x1.longitude - x2.longitude);
-        
+
         double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
                 + Math.cos(Math.toRadians(x1.latitude)) * Math.cos(Math.toRadians(x2.latitude))
                 * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
-        
+
         double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        
+
         // Ungefährer Erdradius: 6371km
         return 6371.0 * c;
     }
-    
+
     /**
      * Ausgehend von Koordinate x1 eine neue Koordinate x3 berechnen, die
      * km Kilometer in Richtung Koordinate x2 liegt.
-     *
+     * <p>
      * Der Einfachheit halber wird der neue Punkt linear interpoliert, auch wenn
      * das eigentlich nicht korrekt ist, da WGS84-Koordinaten von einer
      * spherischen Erdkugel ausgehen. Da wir aber nur mit kurzen Distanzen
      * rechnen, ist die Abweichung klein genug, um uns hier nicht zu stören.
-     *
+     * <p>
      * Vgl.
      * https://math.stackexchange.com/questions/601453/interpolating-gps-coordinates
      * für eine Erklärung, warum eine lineare Formel hier genügt.
@@ -75,11 +68,19 @@ public class WGS84 {
      */
     public static WGS84 moveTowards(WGS84 x1, WGS84 x2, double km) {
         double factor = km / distanceInKm(x1, x2);
-        
+
         WGS84 x3 = new WGS84();
         x3.latitude = x1.latitude + factor * (x2.latitude - x1.latitude);
         x3.longitude = x1.longitude + factor * (x2.longitude - x1.longitude);
         return x3;
+    }
+
+    /**
+     * @return String-Version zum Debuggen
+     */
+    @Override
+    public String toString() {
+        return "" + this.latitude + ", " + this.longitude;
     }
     //</editor-fold>
 

@@ -2,6 +2,7 @@ package dhbw.wpvs.vehicle;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -17,7 +18,7 @@ public class SensorMessage {
 
     // Nachrichtentyp
     public String type = "SENSOR_DATA";
-    
+
     // Fahrzeug ID
     public String vehicleId = "";
 
@@ -39,6 +40,24 @@ public class SensorMessage {
     public int gear = 0;
 
     //<editor-fold defaultstate="collapsed" desc="Objekt klonen">
+
+    /**
+     * Wandelt einen empfangenen JSON-String wieder zurück ein Objekt. Der
+     * String muss hierzu als UTF-8 kodiertes Bytearray vorliegen.
+     *
+     * @param json Empfangene JSON-Daten, UTF-8 kodiert
+     * @return ChatMessage-Objekts
+     */
+    public static SensorMessage fromJson(byte[] json) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.serializeSpecialFloatingPointValues();
+        Gson gson = builder.create();
+        return gson.fromJson(new String(json, StandardCharsets.UTF_8), SensorMessage.class);
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="JSON-Serialisierung">
+
     /**
      * Kopie der Nachrichten erzeugen und zurückgeben. Wichtig, damit es nicht
      * zu unvollständig ausgelesenen Daten kommt. Denn die Klasse Vehicle hat
@@ -53,7 +72,7 @@ public class SensorMessage {
      */
     public SensorMessage copy() {
         SensorMessage copy = new SensorMessage();
-        
+
         copy.time = this.time;
         copy.vehicleId = this.vehicleId;
         copy.running = this.running;
@@ -62,12 +81,10 @@ public class SensorMessage {
         copy.rpm = this.rpm;
         copy.kmh = this.kmh;
         copy.gear = this.gear;
-        
+
         return copy;
     }
-    //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="JSON-Serialisierung">
     /**
      * Erzeugt ein Byte-Array mit einem JSON-String für diese Nachricht.
      *
@@ -78,20 +95,6 @@ public class SensorMessage {
         builder.serializeSpecialFloatingPointValues();
         Gson gson = builder.create();
         return gson.toJson(this).getBytes(StandardCharsets.UTF_8);
-    }
-
-    /**
-     * Wandelt einen empfangenen JSON-String wieder zurück ein Objekt. Der
-     * String muss hierzu als UTF-8 kodiertes Bytearray vorliegen.
-     *
-     * @param json Empfangene JSON-Daten, UTF-8 kodiert
-     * @return ChatMessage-Objekts
-     */
-    public static SensorMessage fromJson(byte[] json) {
-        GsonBuilder builder = new GsonBuilder();
-        builder.serializeSpecialFloatingPointValues();
-        Gson gson = builder.create();
-        return gson.fromJson(new String(json, StandardCharsets.UTF_8), SensorMessage.class);
     }
     //</editor-fold>
 }

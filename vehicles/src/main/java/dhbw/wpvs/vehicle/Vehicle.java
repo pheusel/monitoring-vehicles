@@ -7,66 +7,52 @@ import java.util.TimerTask;
 
 /**
  * Simulation eines Fahrzeugs, das munter durch die Gegend fährt. 🚗
- *
+ * <p>
  * Auch wenn die Berechnungen auf den ersten Blick undurchschaubar erscheinen,
  * handelt es sich hierbei um ein stark vereinfachtes Modell eins Fahrzeugs:
- *
+ * <p>
  * # Das Auto fährt immer vor vorwärts, niemals rückwärts :-)
- *
+ * <p>
  * # Das Auto fährt die vorgegebene Wegstrecke ständig im Kreis. Es besitzt
  * dabei unendlich viel Kraftstoff und ist absolut umweltfreundlich. 🌲
- *
+ * <p>
  * # Das Auto besitzt "maxGears" Vorwärtsgänge.
- *
+ * <p>
  * # Gang 0 entspricht dem Leerlauf bzw. der Parkposition.
- *
+ * <p>
  * # Das Auto besitzt eine quadratische Beschleunigung, die um den Faktor
  * "acceleration" verstärkt oder gedämpft wird.
- *
+ * <p>
  * # Ebenso bremst das Auto quadratisch, was durch den Faktor "deceleration"
  * verstärkt oder gedämpft wird.
- *
+ * <p>
  * # Das Auto versucht ständig, eine bestimmte Zielgeschwindigkeit zu erreichen,
  * wofür es beschleunigen oder bremsen muss.
- *
+ * <p>
  * # Wurde die angepeilte Zielgeschwindigkeit erreicht, wird diese für maximal
  * "keepKmhSeconds" gehalten, danach wird die Geschwindigkeit angepasst (eine
  * neue Zielgeschwindigkeit ermittelt).
- *
+ * <p>
  * # Ist die aktuelle Geschwindigkeit kleiner die Zielgeschwindigkeit, werden
  * stufenweise alle Gänge hochgeschaltet, bis das Auto mit mittlerer Drehzahl
  * fahren kann oder der letzte Gang erreicht wurde.
- *
+ * <p>
  * # Ist das Auto zu schnell, bremst es ab ohne den Gang zu wechseln. Der Gang
  * wird erst gewechselt, wenn es wieder beschleunigt oder wenn die Drehzahl
  * unter das Minimum fällt. Dabei können beliebig viele Gänge übersprungen
  * werden.
- * 
+ * <p>
  * # Es werden keine Verkehrsregeln beachtet. :D
  */
 public class Vehicle {
 
     // Simulierte Motorwerte
     private final SensorMessage sensors = new SensorMessage();  // Aktuelle Sensordaten des Fahrzeugs
-
-    private double startKmh = 100;                              // Startwert, um aus den Löchern zu kommen
-    private double targetKmh = 0;                               // Angepeilte Geschwindigkeit
-    private double prevKmh = 0;                                 // Vorherige Geschwindigkeit bei der letzten Anpassung
     private final int kmhMaxDifference = 40;                    // Neue Geschwindigkeit maximal um 40 kmh abweichen lassen
-    private long kmhReachedTime = 0;                            // Zeit, wann die Zielgeschwindigkeit erreicht wurde
     private final int keepKmhSeconds = 5;                       // Zeit, die die Zielgeschwindigkeit gehalten wird
-
-    // Gefahrene Strecke
-    private List<WGS84> waypoints = new ArrayList<>();          // Wegpunkte der Strecke
-    private boolean warnNoWaypoints = true;                     // Warnung ausgeben, wenn die Streckendaten fehlen
-    private int lastWaypointIndex = 0;                          // Index des zuletzt angefahrenen Wegpunkts
-    private long lastPositionTime = 0L;                         // Zeit, wann die letzte Position ermittelt wurde
-    private double traveledKmFromLastWaypoint = 0;              // Gefahrene Strecke seit dem letzten Wegpunkt
-
     // Hintergrundthread für die Simulation
     private final Timer timer = new Timer(true);                // Timer, der alle 500ms neue Werte berechnen lässt
     private final int timerMillis = 500;                        // Millisekunden zwischen zwei Berechnungsläufen
-
     // Fahrzeugparameter zum Feintuning der Simulation
     private final int minRpm = 800;                             // Minimal zulässige Drehzahl während der Fahrt
     private final int maxRpm = 4000;                            // Maximal zulässige Drehzahl während der Fahrt
@@ -76,6 +62,16 @@ public class Vehicle {
     private final int baseKmh = 30;                             // Maximale Geschwindigkeit im ersten Gang
     private final double acceleration = 1.04;                   // Beschleunigungsfaktor
     private final double deceleration = 0.04;                   // Bremsfaktor
+    private double startKmh = 100;                              // Startwert, um aus den Löchern zu kommen
+    private double targetKmh = 0;                               // Angepeilte Geschwindigkeit
+    private double prevKmh = 0;                                 // Vorherige Geschwindigkeit bei der letzten Anpassung
+    private long kmhReachedTime = 0;                            // Zeit, wann die Zielgeschwindigkeit erreicht wurde
+    // Gefahrene Strecke
+    private List<WGS84> waypoints = new ArrayList<>();          // Wegpunkte der Strecke
+    private boolean warnNoWaypoints = true;                     // Warnung ausgeben, wenn die Streckendaten fehlen
+    private int lastWaypointIndex = 0;                          // Index des zuletzt angefahrenen Wegpunkts
+    private long lastPositionTime = 0L;                         // Zeit, wann die letzte Position ermittelt wurde
+    private double traveledKmFromLastWaypoint = 0;              // Gefahrene Strecke seit dem letzten Wegpunkt
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Vehicle(String vehicleId, List<WGS84> waypoints) {
@@ -91,6 +87,7 @@ public class Vehicle {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Sensordaten auslesen">
+
     /**
      * Sensordaten auslesen
      *
@@ -104,6 +101,7 @@ public class Vehicle {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Simulation starten und stoppen">
+
     /**
      * Simulation starten, so dass regelmäßig neue Werte berechnet werden.
      */

@@ -2,6 +2,7 @@ package dhbw.wpvs.vehicle;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -14,28 +15,17 @@ public class StatusMessage {
 
     // Zeitstempel
     public long time = System.currentTimeMillis();
-    
+
     // Fahrzeug ID
     public String vehicleId = "";
-    
+
     // Statusart
     public StatusType type;
-    
+
     // Meldungstext
     public String message = "";
-    
+
     //<editor-fold defaultstate="collapsed" desc="JSON-Serialisierung">
-    /**
-     * Erzeugt ein Byte-Array mit einem JSON-String für diese Nachricht.
-     *
-     * @return JSON-String als UTF-8 kodiertes Byte-Array
-     */
-    public byte[] toJson() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.serializeSpecialFloatingPointValues();
-        Gson gson = builder.create();
-        return gson.toJson(this).getBytes(StandardCharsets.UTF_8);
-    }
 
     /**
      * Wandelt einen empfangenen JSON-String wieder zurück ein Objekt. Der
@@ -49,6 +39,18 @@ public class StatusMessage {
         builder.serializeSpecialFloatingPointValues();
         Gson gson = builder.create();
         return gson.fromJson(new String(json, StandardCharsets.UTF_8), StatusMessage.class);
+    }
+
+    /**
+     * Erzeugt ein Byte-Array mit einem JSON-String für diese Nachricht.
+     *
+     * @return JSON-String als UTF-8 kodiertes Byte-Array
+     */
+    public byte[] toJson() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.serializeSpecialFloatingPointValues();
+        Gson gson = builder.create();
+        return gson.toJson(this).getBytes(StandardCharsets.UTF_8);
     }
     //</editor-fold>
 }

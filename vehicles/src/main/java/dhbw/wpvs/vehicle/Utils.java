@@ -20,7 +20,7 @@ public class Utils {
 
     // Stream für Tastatureingaben
     public static BufferedReader fromKeyboard = new BufferedReader(new InputStreamReader(System.in));
-    
+
     /**
      * Exception ausgeben
      *
@@ -32,8 +32,8 @@ public class Utils {
 
     /**
      * Einlesen von Tastatureingaben.
-     * 
-     * @param prompt Frage
+     *
+     * @param prompt       Frage
      * @param defaultValue Vorschlagswert
      * @return Eingegebener Wert oder Vorschlagswert
      */
