@@ -228,14 +228,14 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     // CONNECTION_LIST: this.removeVehicle(message) aufrufen
                     // SENSOR_DATA: this.updateVehicle(message) aufrufen
 
-                    switch (message) {
-                        case VEHICLE_READY:
+                    switch (message.type) {
+                        case "VEHICLE_READY":
                             this.addVehicle(message);
                             break;
-                        case CONNECTION_LIST:
+                        case "CONNECTION_LIST":
                             this.removeVehicle(message);
                             break;
-                        case SENSOR_DATA:
+                        case "SENSOR_DATA":
                             this.updateVehicle(message);
                             break;
                     }
