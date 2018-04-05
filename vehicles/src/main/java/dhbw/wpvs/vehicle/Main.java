@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -153,18 +154,18 @@ public class Main {
         List<WGS84> waypoints = new ArrayList<>();
 
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
+        String line = br.readLine();
 
-        do {
-            line = br.readLine();
-            if (!line.startsWith("<")) {
-                String[] as = line.split("|");
+        while (line != null) {
+            if (!line.startsWith(Pattern.quote("<"))) {
+                String[] as = line.split(Pattern.quote("|"));
                 WGS84 wgs84 = new WGS84();
                 wgs84.longitude = Double.valueOf(as[0]) / 100000.0;
                 wgs84.latitude = Double.valueOf(as[1]) / 100000.0;
                 waypoints.add(wgs84);
             }
-        } while (line != null);
+            line = br.readLine();
+        }
 
         return waypoints;
     }
