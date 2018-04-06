@@ -1,0 +1,20 @@
+=== Notes on the ITN format
+
+===== How the format is structured
+
+   <pre>
+     0845453|4902352|Point 1 |0|
+     0848501|4900249|Point 2 |0|
+     0849295|4899460|Point 3 |0|
+     0849796|4897723|Point 4 |0|
+   </pre>
+
+* one line contains a waypoint
+* data fields of a line are separated by |
+* first field is the "Longitude"
+* second field the "Latitude"
+* the numbers must be divided by 100_000.0
+
+===== How the parseIntFile method works
+
+* opens the ITN file passed in "filename" and extracts the coordinates for the route of the vehicle

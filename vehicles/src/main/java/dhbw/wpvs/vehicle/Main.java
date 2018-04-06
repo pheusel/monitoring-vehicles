@@ -21,10 +21,10 @@ public class Main {
 
         int qos = 0;
 
-        // Fahrzeug-ID abfragen
+        // Get vehicleId
         String vehicleId = Utils.askInput("Beliebige Fahrzeug-ID", "postauto");
 
-        // Zu fahrende Strecke abfragen
+        // Get route to be driven
         File workdir = new File("./vehicles/waypoints");
         String[] waypointFiles = workdir.list((File dir, String name) -> name.toLowerCase().endsWith(".itn"));
 
@@ -43,37 +43,28 @@ public class Main {
 
         List<WGS84> waypoints = parseItnFile(new File(workdir, waypointFiles[index]));
 
-        // Adresse des MQTT-Brokers abfragen
+        // Get MQTT-Broker address
         String mqttAddress = Utils.askInput("MQTT-Broker", Utils.MQTT_BROKER_ADDRESS);
 
         MqttClient client = new MqttClient(mqttAddress, MqttClient.generateClientId());
 
-        // TODO: Sicherstellen, dass bei einem Verbindungsabbruch eine sog.
-        // LastWill-Nachricht gesendet wird, die auf den Verbindungsabbruch
-        // hinweist. Die Nachricht soll eine "StatusMessage" sein, bei der das
-        // Feld "type" auf "StatusType.CONNECTION_LOST" gesetzt ist.
-        //
-        // Die Nachricht muss dem MqttConnectOptions-Objekt übergeben werden
-        // und soll an das Topic Utils.MQTT_TOPIC_NAME gesendet werden.
-
+        // Send LWT message when connection is aborted
         StatusMessage lwt = new StatusMessage();
         lwt.type = StatusType.CONNECTION_LOST;
         lwt.vehicleId = vehicleId;
         lwt.message = "Last Will and Testament";
-
 
         MqttConnectOptions conOp = new MqttConnectOptions();
         conOp.setCleanSession(true);
         conOp.setWill(Utils.MQTT_TOPIC_NAME, lwt.toJson(), qos, true);
         System.out.println("Connecting to broker: " + mqttAddress);
 
-        // TODO: Verbindung zum MQTT-Broker herstellen.
+        // Connect to MQTT-Broker
 
         client.connect(conOp);
         System.out.println("Connected");
 
-        // TODO: Statusmeldung mit "type" = "StatusType.VEHICLE_READY" senden.
-
+        // Send status message
         StatusMessage statusMessage = new StatusMessage();
         statusMessage.type = StatusType.VEHICLE_READY;
         statusMessage.vehicleId = vehicleId;
@@ -84,13 +75,7 @@ public class Main {
         client.publish(Utils.MQTT_TOPIC_NAME, message);
         System.out.println("Message was published");
 
-
-        // Die Nachricht soll soll an das Topic Utils.MQTT_TOPIC_NAME gesendet
-        // werden.
-
-        // TODO: Thread starten, der jede Sekunde die aktuellen Sensorwerte
-        // des Fahrzeugs ermittelt und verschickt. Die Sensordaten sollen
-        // an das Topic Utils.MQTT_TOPIC_NAME + "/" + vehicleId gesendet werden.
+        // thread, which determines and sends the current sensor values of the vehicle every second.
         Vehicle vehicle = new Vehicle(vehicleId, waypoints);
         vehicle.startVehicle();
 
@@ -107,7 +92,7 @@ public class Main {
             }
         }, 0, 1000);
 
-        // Warten, bis das Programm beendet werden soll
+        // Wait until the program is to be terminated
         Utils.fromKeyboard.readLine();
 
         vehicle.stopVehicle();
@@ -117,39 +102,13 @@ public class Main {
         System.out.println("Vehicle data was published");
 
 
-        // TODO: Oben vorbereitete LastWill-Nachricht hier manuell versenden,
-        // da sie bei einem regulären Verbindungsende nicht automatisch
-        // verschickt wird.
-        //
-        // Anschließend die Verbindung trennen und den oben gestarteten Thread
-        // beenden, falls es kein Daemon-Thread ist.
-
+        // Sending LWT Messages Manually
         client.publish(Utils.MQTT_TOPIC_NAME, new MqttMessage(lwt.toJson()));
         client.disconnect();
         System.out.println("Disconnected");
         System.exit(0);
     }
 
-    /**
-     * Öffnet die in "filename" übergebene ITN-Datei und extrahiert daraus die
-     * Koordinaten für die Wegstrecke des Fahrzeugs. Das Dateiformat ist ganz
-     * simpel:
-     *
-     * <pre>
-     * 0845453|4902352|Point 1 |0|
-     * 0848501|4900249|Point 2 |0|
-     * 0849295|4899460|Point 3 |0|
-     * 0849796|4897723|Point 4 |0|
-     * </pre>
-     * <p>
-     * Jede Zeile enthält einen Wegpunkt. Die Datenfelder einer Zeile werden
-     * durch | getrennt. Das erste Feld ist die "Longitude", das zweite Feld die
-     * "Latitude". Die Zahlen müssen durch 100_000.0 geteilt werden.
-     *
-     * @param file ITN-Datei
-     * @return Liste mit Koordinaten
-     * @throws java.io.IOException
-     */
     private static List<WGS84> parseItnFile(final File file) throws IOException {
         List<WGS84> waypoints = new ArrayList<>();
 
@@ -166,7 +125,6 @@ public class Main {
             }
             line = br.readLine();
         }
-
         return waypoints;
     }
 }
